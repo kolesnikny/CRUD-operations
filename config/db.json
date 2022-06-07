@@ -1,0 +1,13 @@
+{
+  "development": {
+    "username": "kolesnikny",
+    "password": "1111",
+    "database": "supers",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+  },
+  "production": {
+  }
+}
