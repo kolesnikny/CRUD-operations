@@ -11,6 +11,7 @@ module.exports = {
       nickName: {
         field: 'nick_name',
         allowNull: false,
+        unique: true,
         type: Sequelize.STRING,
       },
       realName: {
@@ -24,14 +25,16 @@ module.exports = {
         type: Sequelize.TEXT,
       },
       catchPrase: {
-        field: 'catch_phrase',
+        field: 'catch_prase',
         type: Sequelize.STRING,
       },
       createdAt: {
+        field: 'created_at',
         allowNull: false,
         type: Sequelize.DATE,
       },
       updatedAt: {
+        field: 'updated_at',
         allowNull: false,
         type: Sequelize.DATE,
       },

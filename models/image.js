@@ -20,16 +20,12 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      heroId: {
-        field: 'hero_id',
-        allowNull: false,
-        type: DataTypes.INTEGER,
-      },
     },
     {
       sequelize,
       modelName: 'Image',
       tableName: 'images',
+      underscored: true,
     }
   );
   return Image;
