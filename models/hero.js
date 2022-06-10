@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       });
       Hero.belongsToMany(models.Superpower, {
         through: 'heroes_to_powers',
-        foreignKey: 'superpowerId',
+        foreignKey: 'heroId',
       });
     }
   }

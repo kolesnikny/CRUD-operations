@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Superpower.belongsToMany(models.Hero, {
         through: 'heroes_to_powers',
-        foreignKey: 'heroId',
+        foreignKey: 'superpowerId',
       });
     }
   }

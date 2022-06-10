@@ -1,35 +1,42 @@
 const { Hero, Image, Superpower } = require('../models');
 const _ = require('lodash');
 
+const addImages = (images, heroInstance) => {
+  images.forEach(
+    async (image) =>
+      await heroInstance.createImage({ imageSrc: image.filename })
+  );
+};
+
+const addSuperpowers = (powers, heroInstance) => {
+  powers.forEach(async (powerid) => {
+    const powerInstance = await Superpower.findByPk(Number(powerid));
+    heroInstance.addSuperpower(powerInstance);
+  });
+};
+
 module.exports.createHero = async (req, res, next) => {
   try {
-    const { body, files } = req;
-    console.log(files);
+    const {
+      body,
+      body: { superpowers },
+      files,
+    } = req;
     const filtr = _.pick(body, [
       'nickName',
       'realName',
       'originDescription',
       'catchPrase',
     ]);
-    console.log(filtr);
-    const hero = await Hero.create({ ...filtr });
+    const heroInstance = await Hero.create({ ...filtr });
 
-    files.forEach((file) => hero.createImage({ imageSrc: file.filename }));
+    addImages(files, heroInstance);
+    addSuperpowers(superpowers, heroInstance);
 
-    res.send(files.map((file) => file.filename));
-
-    // res.json({ message: 'Successfully uploaded files' });
+    res.json({ message: 'Successfully uploaded files' });
   } catch (error) {
     next(error);
   }
 };
 
-// module.exports.createHero = async (req, res, next) => {
-//   try {
-//     const { body } = req;
-//     console.log(req.files);
-//     res.send(req.files);
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+module.exports.updateHero;
