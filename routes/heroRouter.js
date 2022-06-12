@@ -19,9 +19,8 @@ const upload = multer({ storage });
 const heroRouter = Router();
 
 heroRouter.post('/', upload.array('files'), HeroController.createHero);
-
-heroRouter.get('/', (req, res) => {
-  res.send('hello from wsl');
-});
+heroRouter.delete('/:id', upload.array('files'), HeroController.deleteHero);
+heroRouter.get('/all', HeroController.getAllHeroes);
+heroRouter.get('/:id', HeroController.getOneHero);
 
 module.exports = heroRouter;
